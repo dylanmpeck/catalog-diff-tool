@@ -26,6 +26,7 @@ After the user is signed-in and authenticated, they submit an html form with the
 ## How is this repo organized?
 
 Cloud Run code: `cr_frontend`
+
 Cloud Function code: `cf_query_catalogs`
 
 ## How can I add my catalog to the dropdown list?
