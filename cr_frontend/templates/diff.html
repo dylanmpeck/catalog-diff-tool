@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Catalog Diff</title>
+    </head>
+    <body>
+        <h1>These items are missing from the {{ catalog1_name }} catalog</h1>
+        <div style="height:250px;width:50%;overflow:auto;background-color:rgb(0, 0, 0);color:rgb(18, 204, 73);scrollbar-base-color:gold;font-family:sans-serif;padding:10px;">
+        {% for item in catalog1_missing_items %}
+            <p> {{ item }} </p>
+        {% endfor %}
+        </div>
+        <h1>These items are missing from the {{ catalog2_name }} catalog</h1>
+        <div style="height:250px;width:50%;overflow:auto;background-color:rgb(0, 0, 0);color:rgb(18, 204, 73);scrollbar-base-color:gold;font-family:sans-serif;padding:10px;">
+        {% for item in catalog2_missing_items %}
+            <p> {{ item }} </p>
+        {% endfor %}
+        </div>
+    </body>
+</html>

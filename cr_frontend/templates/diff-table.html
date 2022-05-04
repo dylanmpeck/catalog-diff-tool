@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Catalog Diff Display</title>
+		<meta name="description" content="Catalog Diff Display: Check differences between Catalogs" />
+		<meta name="keywords" content="Catalog Diff Demo" />
+		<meta name="author" content="Dylan" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/normalize.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/demo.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/component.css') }}" />
+		<!--[if IE]>
+  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+        <script src="/static/table.js"></script>
+	</head>
+	<body style="height: 100%;width: 100%;">
+        <div class="float-container">
+        <div class="float-child">
+            <h2>{{ catalog1_name }}</h2>
+            <p>These items exist in {{ catalog2_name }} but are missing from {{ catalog1_name }}: </a></p>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="LabL" name="Lab" onclick="filterTable(this.id, this.name, 'table1');" checked />Lab
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="LearningPathL" name="LearningPath" onclick="filterTable(this.id, this.name, 'table1');" checked />LearningPath
+            </label>            
+            <div class = "table-container">
+				<table id= "table1" style="float:left;">
+					<thead>
+						<tr>
+                            {% for col in catalog1_col_names %}
+                                <th style="position: sticky;"">{{ col }}</th>
+                            {% endfor %}
+						</tr>
+					</thead>
+					<tbody>
+                        {% for rows in catalog1_row_data %}
+                            <tr>
+                            {% for row in rows %}
+                                <td>{{row}}</td>
+                            {% endfor %}
+                            </tr>
+                        {% endfor %}
+
+					</tbody>
+				</table>
+            </div>
+        </div>
+        <div class="float-child"">
+                <h2>{{ catalog2_name }}</h2>
+                <p>These items exist in {{ catalog1_name }} but are missing from {{ catalog2_name }} </a></p>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="LabR" name="Lab" onclick="filterTable(this.id, this.name, 'table2');" checked />Lab
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="LearningPathR" name="LearningPath" onclick="filterTable(this.id, this.name, 'table2');" checked />LearningPath
+                </label>     
+                <div class="table-container">
+				<table id="table2" style="float:left;">
+					<thead>
+						<tr>
+                            {% for col in catalog2_col_names %}
+                                <th style="position: sticky;"">{{ col }}</th>
+                            {% endfor %}
+						</tr>
+					</thead>
+					<tbody>
+                        {% for rows in catalog2_row_data %}
+                            <tr>
+                            {% for row in rows %}
+                                <td>{{row}}</td>
+                            {% endfor %}
+                            </tr>
+                        {% endfor %}
+
+					</tbody>
+				</table>
+                </div>
+            </div>
+            </div>
+		<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/jquery.ba-throttle-debounce.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/jquery.stickyheader.js') }}"></script>
+	</body>
+</html>

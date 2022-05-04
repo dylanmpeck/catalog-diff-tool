@@ -1,0 +1,61 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<head>
+    <title>Catalog Diff</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first-->
+    <script src="https://www.gstatic.com/firebasejs/7.18/firebase-app.js"></script>
+    <!-- Add Firebase Auth service-->
+    <script src="https://www.gstatic.com/firebasejs/7.18/firebase-auth.js"></script>
+    <script src="/static/config.js"></script>
+    <script src="/static/firebase.js"></script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐱</text></svg>">
+  </head>
+  <body class="yellow lighten-5">
+    <nav class="teal darken-3">
+      <div class="nav-wrapper container"><a class="brand-logo center" href="#!">Catalog Diff</a>
+        <ul class="left" id="nav-mobile">
+          <button class="waves-effect waves-light btn" id="signInButton">Sign In with Google</button>
+        </ul>
+      </div>
+    </nav>
+  </body>
+
+<form id="form" action="/display" method="POST">
+    <div id= "input_fields">
+    <p><label for="catalog1_url">Choose first catalog:</label>
+    <select style="display: block;" id="catalog1_url" name="catalog1_url">
+        <option value="https://google.qwiklabs.com/authoring/catalogs/gcp-self-paced-labs-all-public">SPL Public</option>
+        <option value="https://google.qwiklabs.com/authoring/catalogs/gcp-self-paced-labs-all-free-to-googlers">Googler</option>
+        <option value="https://google.qwiklabs.com/authoring/catalogs/google-self-paced-labs-reseller-partne">Reseller</option>
+        <option value="https://google.qwiklabs.com/authoring/catalogs/google-self-paced-labs-free-to-all">FreeToAll</option>
+        <option value="https://ce.qwiklabs.com/authoring/catalogs/entire-catalog-for-ce-instance-of-qwiklab-76a67879">CE Instance</option>
+        <option value="https://google.qwiklabs.com/authoring/catalogs/partner2020">Partner2020</option>
+    </select></p>
+    <p><label for="catalog2_url">Choose second catalog:</label>
+    <select style="display: block;" id="catalog2_url" name="catalog2_url">
+        <option value="https://google.qwiklabs.com/authoring/catalogs/google-self-paced-labs-reseller-partne">Reseller</option>        
+        <option value="https://google.qwiklabs.com/authoring/catalogs/gcp-self-paced-labs-all-public">SPL Public</option>
+        <option value="https://google.qwiklabs.com/authoring/catalogs/gcp-self-paced-labs-all-free-to-googlers">Googler</option>
+        <option value="https://google.qwiklabs.com/authoring/catalogs/google-self-paced-labs-free-to-all">FreeToAll</option>
+        <option value="https://ce.qwiklabs.com/authoring/catalogs/entire-catalog-for-ce-instance-of-qwiklab-76a67879">CE Instance</option>
+        <option value="https://google.qwiklabs.com/authoring/catalogs/partner2020">Partner2020</option>
+    </select></p>
+    <input id="submit" value="Submit" type="submit">
+    </div>
+    <div id="loading" style="display:none;margin-left: auto;margin-right: auto;background-blend-mode:lighten;" ><img src="/static/loading_transparent.gif" alt="Loading gif..." /></div>
+</form>
+
+<script type="text/javascript">
+    (function (d) {
+      d.getElementById('form').onsubmit = function () {
+        d.getElementById('input_fields').style.display = 'none';
+        d.getElementById('loading').style.display = 'block';
+      };
+    }(document));
+</script>
+<script>
+    document.getElementById('signInButton').addEventListener("click", toggle);
+</script>
